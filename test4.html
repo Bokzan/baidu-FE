@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .block {
+            background-color: yellow;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="input" value="">
+<button id="leftIn" onclick="leftIn()">左进</button>
+<button id="leftOut" onclick="leftOut()">左出</button>
+<button id="rightIn" onclick="rightIn()">右进</button>
+<button id="rightOut" onclick="rightOut()">右出</button>
+<div class="container"></div>
+
+<script>
+
+
+    function leftIn() {
+        var input_value = document.querySelector("#input").value;
+        var container = document.querySelector(".container");
+        console.log(input_value);
+        var span = document.createElement('span');
+        span.setAttribute('class', 'block');
+        span.innerHTML = input_value;
+        console.log(span);
+        container.insertBefore(span, span.childNodes[0]);
+
+    }
+    function leftOut() {
+        console.log('leftOut');
+    }
+    function rightIn() {
+        var input_value = document.querySelector("#input").value;
+        var container = document.querySelector(".container");
+        console.log(input_value);
+        var span = document.createElement('span');
+        span.setAttribute('class', 'block');
+        span.innerHTML = input_value;
+        console.log(span);
+        container.appendChild(span);
+
+    }
+    function rightOut() {
+        console.log('rightOut');
+    }
+
+
+</script>
+</body>
+</html>
+
+<!--<!DOCTYPE HTML>-->
+<!--<html>-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<title>函数传参</title>-->
+<!--<script type="text/JavaScript">-->
+<!--function cc(){-->
+<!--var a = document.getElementById("abc").value;-->
+<!--alert(a);-->
+<!--}-->
+
+<!--</script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<input type="text" id="abc" value="">-->
+<!--<button onclick="cc()">dianji</button>-->
+<!--</body>-->
+<!--</html>-->
