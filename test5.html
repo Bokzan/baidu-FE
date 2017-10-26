@@ -20,10 +20,13 @@
 <button id="leftOut" onclick="leftOut()">左出</button>
 <button id="rightIn" onclick="rightIn()">右进</button>
 <button id="rightOut" onclick="rightOut()">右出</button>
+<button onclick="sort1()">排序</button>
 <div class="container" style="height: 120px;"></div>
+<div class="container2" style="height: 120px;"></div>
 
 <script>
     var container = document.querySelector(".container");
+    var container2 = document.querySelector(".container2");
     var count = 0;
     function getInput() {
         var input_value = document.querySelector("#input").value;
@@ -99,7 +102,22 @@
         block.remove(this);
     }
 
-
+    function sort1() {
+        var cc = container.children;
+        var ccarr = new Array;
+        for (var i = 0; i < cc.length; i++) {
+            ccarr.push(cc[i].style.height.substr(0, 2))
+        }
+        console.log(ccarr);
+        var newarr = ccarr.sort()
+        for (var i = 0; i < newarr.length; i++) {
+            var span = document.createElement('span');
+            span.setAttribute('class', 'block');
+            span.setAttribute('onclick', 'blockclick(this)')
+            span.style.height = (newarr[i] + 'px');
+            container2.appendChild(span);
+        }
+    }
 </script>
 </body>
 </html>
