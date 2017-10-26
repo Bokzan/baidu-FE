@@ -14,8 +14,10 @@
     </style>
 </head>
 <body>
-
-<input type="text" id="input" value="">
+<div>
+    <!--<input type="textarea" value="">-->
+    <textarea rows="3" cols="20" id="input"></textarea>
+</div>
 <button id="leftIn" onclick="leftIn()">左进</button>
 <button id="leftOut" onclick="leftOut()">左出</button>
 <button id="rightIn" onclick="rightIn()">右进</button>
@@ -27,31 +29,22 @@
 <script>
     var container = document.querySelector(".container");
     var container2 = document.querySelector(".container2");
-    var count = 0;
     function getInput() {
         var input_value = document.querySelector("#input").value;
-        var re = /^[0-9]+.?[0-9]*$/;
-        if (re.test(input_value) && input_value >= 10 && input_value <= 100) {
-            return input_value;
-        }
+        return input_value;
     }
 
     function leftIn() {
-
+        console.log(getInput());
         if (getInput() == undefined) {
             alert('输入错误，请输入10-100的数字')
-        } else if (container.children.length > 59) {
-            alert('添加数量超出限制，60')
         } else {
             console.log(getInput());
             var span = document.createElement('span');
             span.setAttribute('class', 'block');
-            span.setAttribute('onclick', 'blockclick(this)')
-            span.style.height = (getInput() + 'px');
-            console.log(getInput() + 'px');
+            span.setAttribute('onclick', 'blockclick(this)');
+            span.innerHTML = getInput();
             container.insertBefore(span, container.childNodes[0]);
-            count++;
-            console.log(count);
         }
 
 
@@ -60,18 +53,14 @@
     function rightIn() {
         if (getInput() == undefined) {
             alert('输入错误，请输入10-100的数字')
-        } else if (container.children.length > 59) {
-            alert('添加数量超出限制，60')
         } else {
-            console.log(getInput());
+
             var span = document.createElement('span');
             span.setAttribute('class', 'block');
-            span.setAttribute('onclick', 'blockclick(this)')
-            span.style.height = (getInput() + 'px');
-            console.log(span);
+            span.setAttribute('onclick', 'blockclick(this)');
+            span.innerHTML = getInput();
             container.appendChild(span);
-            count++;
-            console.log(count);
+
         }
     }
     function leftOut() {
@@ -79,8 +68,7 @@
             alert('没有方块，请先添加')
         } else {
             container.removeChild(container.firstChild);
-            count--;
-            console.log(count);
+
         }
 
         console.log('leftOut');
@@ -92,34 +80,16 @@
             alert('没有方块，请先添加')
         } else {
             container.removeChild(container.lastChild);
-            count--;
-            console.log(count);
+
         }
     }
 
 
     function blockclick(block) {
         block.remove(this);
-        count--;
-        console.log(count);
     }
     //排序输出
-    function sort1() {
-        var cc = container.children;
-        var ccarr = new Array;
-        for (var i = 0; i < cc.length; i++) {
-            ccarr.push(cc[i].style.height.substr(0, 2))
-        }
-        console.log(ccarr);
-        var newarr = ccarr.sort()
-        for (var i = 0; i < newarr.length; i++) {
-            var span = document.createElement('span');
-            span.setAttribute('class', 'block');
-            span.setAttribute('onclick', 'blockclick(this)')
-            span.style.height = (newarr[i] + 'px');
-            container2.appendChild(span);
-        }
-    }
+
 </script>
 </body>
 </html>
