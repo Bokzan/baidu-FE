@@ -15,36 +15,39 @@
 </head>
 <body>
 <div>
-    <!--<input type="textarea" value="">-->
     <textarea rows="3" cols="20" id="input"></textarea>
 </div>
 <button id="leftIn" onclick="leftIn()">左进</button>
 <button id="leftOut" onclick="leftOut()">左出</button>
 <button id="rightIn" onclick="rightIn()">右进</button>
 <button id="rightOut" onclick="rightOut()">右出</button>
-<button onclick="sort1()">排序</button>
+<input type="text" id="input2">
+<button onclick="searchBtn()">搜索</button>
 <div class="container" style="height: 120px;"></div>
-<div class="container2" style="height: 120px;"></div>
 
 <script>
     var container = document.querySelector(".container");
-    var container2 = document.querySelector(".container2");
     function getInput() {
         var input_value = document.querySelector("#input").value;
-        return input_value;
+        var inputarr = input_value.split(',');
+        console.log('inputarr' + inputarr);
+        return inputarr;
     }
 
     function leftIn() {
         console.log(getInput());
         if (getInput() == undefined) {
-            alert('输入错误，请输入10-100的数字')
+            alert('请输入')
         } else {
             console.log(getInput());
-            var span = document.createElement('span');
-            span.setAttribute('class', 'block');
-            span.setAttribute('onclick', 'blockclick(this)');
-            span.innerHTML = getInput();
-            container.insertBefore(span, container.childNodes[0]);
+            for (var i = 0; i < getInput().length; i++) {
+                var span = document.createElement('span');
+                span.setAttribute('class', 'block');
+                span.setAttribute('onclick', 'blockclick(this)');
+                span.innerHTML = getInput()[i];
+                container.insertBefore(span, container.childNodes[0]);
+            }
+
         }
 
 
@@ -52,15 +55,15 @@
 
     function rightIn() {
         if (getInput() == undefined) {
-            alert('输入错误，请输入10-100的数字')
+            alert('请输入')
         } else {
-
-            var span = document.createElement('span');
-            span.setAttribute('class', 'block');
-            span.setAttribute('onclick', 'blockclick(this)');
-            span.innerHTML = getInput();
-            container.appendChild(span);
-
+            for (var i = 0; i < getInput().length; i++) {
+                var span = document.createElement('span');
+                span.setAttribute('class', 'block');
+                span.setAttribute('onclick', 'blockclick(this)');
+                span.innerHTML = getInput()[i];
+                container.appendChild(span);
+            }
         }
     }
     function leftOut() {
@@ -88,8 +91,34 @@
     function blockclick(block) {
         block.remove(this);
     }
-    //排序输出
 
+
+    function searchBtn() {
+        var input2_value = document.querySelector("#input2").value;
+        var input_value = document.querySelector("#input").value;
+        var inputarr = input_value.split('');
+        var input2arr = input2_value.split('');
+
+        console.log(inputarr);
+        console.log(input2arr);
+        if (inputarr.length > input2arr.length) {
+            match(inputarr)
+        } else {
+            match(input2arr)
+        }
+        function match(len) {
+            for (var i = 0; i < len.length; i++) {
+                if (inputarr[i] == input2arr[i]) {
+
+                }
+            }
+        }
+
+
+    }
+
+    
+    
 </script>
 </body>
 </html>
