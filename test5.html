@@ -9,6 +9,7 @@
             padding: 10px 20px;
             margin-right: 10px;
             cursor: pointer;
+            display: inline-block;
         }
     </style>
 </head>
@@ -19,30 +20,35 @@
 <button id="leftOut" onclick="leftOut()">左出</button>
 <button id="rightIn" onclick="rightIn()">右进</button>
 <button id="rightOut" onclick="rightOut()">右出</button>
-<div class="container" style=" padding: 10px 0;"></div>
+<div class="container" style="height: 120px;"></div>
 
 <script>
+    var container = document.querySelector(".container");
+    var count = 0;
     function getInput() {
         var input_value = document.querySelector("#input").value;
         var re = /^[0-9]+.?[0-9]*$/;
-        if (re.test(input_value)) {
+        if (re.test(input_value) && input_value >= 10 && input_value <= 100) {
             return input_value;
         }
-
     }
 
     function leftIn() {
+
         if (getInput() == undefined) {
-            alert('输入错误，请输入数字')
+            alert('输入错误，请输入10-100的数字')
+        } else if (container.children.length > 59) {
+            alert('添加数量超出限制，60')
         } else {
-            var container = document.querySelector(".container");
             console.log(getInput());
             var span = document.createElement('span');
             span.setAttribute('class', 'block');
             span.setAttribute('onclick', 'blockclick(this)')
-            span.innerHTML = getInput();
-            console.log(span);
+            span.style.height = (getInput() + 'px');
+            console.log(getInput() + 'px');
             container.insertBefore(span, container.childNodes[0]);
+            count++;
+            console.log(count);
         }
 
 
@@ -50,25 +56,28 @@
 
     function rightIn() {
         if (getInput() == undefined) {
-            alert('输入错误，请输入数字')
+            alert('输入错误，请输入10-100的数字')
+        } else if (container.children.length > 59) {
+            alert('添加数量超出限制，60')
         } else {
-            var container = document.querySelector(".container");
             console.log(getInput());
             var span = document.createElement('span');
             span.setAttribute('class', 'block');
             span.setAttribute('onclick', 'blockclick(this)')
-            span.innerHTML = getInput();
+            span.style.height = (getInput() + 'px');
             console.log(span);
             container.appendChild(span);
+            count++;
+            console.log(count);
         }
     }
     function leftOut() {
-
-        var container = document.querySelector(".container");
         if (container.children.length == 0) {
             alert('没有方块，请先添加')
         } else {
             container.removeChild(container.firstChild);
+            count--;
+            console.log(count);
         }
 
         console.log('leftOut');
@@ -76,11 +85,12 @@
     }
 
     function rightOut() {
-        var container = document.querySelector(".container");
         if (container.children.length == 0) {
             alert('没有方块，请先添加')
         } else {
             container.removeChild(container.lastChild);
+            count--;
+            console.log(count);
         }
     }
 
