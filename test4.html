@@ -7,7 +7,8 @@
         .block {
             background-color: yellow;
             padding: 10px 20px;
-            margin: 10px;
+            margin-right: 10px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -18,38 +19,74 @@
 <button id="leftOut" onclick="leftOut()">左出</button>
 <button id="rightIn" onclick="rightIn()">右进</button>
 <button id="rightOut" onclick="rightOut()">右出</button>
-<div class="container"></div>
+<div class="container" style=" padding: 10px 0;"></div>
 
 <script>
+    function getInput() {
+        var input_value = document.querySelector("#input").value;
+        var re = /^[0-9]+.?[0-9]*$/;
+        if (re.test(input_value)) {
+            return input_value;
+        }
 
+    }
 
     function leftIn() {
-        var input_value = document.querySelector("#input").value;
-        var container = document.querySelector(".container");
-        console.log(input_value);
-        var span = document.createElement('span');
-        span.setAttribute('class', 'block');
-        span.innerHTML = input_value;
-        console.log(span);
-        container.insertBefore(span, span.childNodes[0]);
+        if (getInput() == undefined) {
+            alert('输入错误，请输入数字')
+        } else {
+            var container = document.querySelector(".container");
+            console.log(getInput());
+            var span = document.createElement('span');
+            span.setAttribute('class', 'block');
+            span.setAttribute('onclick', 'blockclick(this)')
+            span.innerHTML = getInput();
+            console.log(span);
+            container.insertBefore(span, container.childNodes[0]);
+        }
 
+
+    }
+
+    function rightIn() {
+        if (getInput() == undefined) {
+            alert('输入错误，请输入数字')
+        } else {
+            var container = document.querySelector(".container");
+            console.log(getInput());
+            var span = document.createElement('span');
+            span.setAttribute('class', 'block');
+            span.setAttribute('onclick', 'blockclick(this)')
+            span.innerHTML = getInput();
+            console.log(span);
+            container.appendChild(span);
+        }
     }
     function leftOut() {
-        console.log('leftOut');
-    }
-    function rightIn() {
-        var input_value = document.querySelector("#input").value;
+
         var container = document.querySelector(".container");
-        console.log(input_value);
-        var span = document.createElement('span');
-        span.setAttribute('class', 'block');
-        span.innerHTML = input_value;
-        console.log(span);
-        container.appendChild(span);
+        if (container.children.length == 0) {
+            alert('没有方块，请先添加')
+        } else {
+            container.removeChild(container.firstChild);
+        }
+
+        console.log('leftOut');
 
     }
+
     function rightOut() {
-        console.log('rightOut');
+        var container = document.querySelector(".container");
+        if (container.children.length == 0) {
+            alert('没有方块，请先添加')
+        } else {
+            container.removeChild(container.lastChild);
+        }
+    }
+
+
+    function blockclick(block) {
+        block.remove(this);
     }
 
 
