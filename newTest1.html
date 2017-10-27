@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #inp {
+            border: 1px solid #999;
+            height: 30px;
+            font-size: 18px;
+            width: 200px;
+            border-radius: 3px;
+        }
+
+        #btn {
+            padding: 8px 10px;
+            background-color: cornflowerblue;
+            color: #fff;
+            border: #000;
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <ol>字符数为4~16位</ol>
+    <ol>每个英文字母、数字、英文符号长度为1</ol>
+    <ol>每个汉字，中文符号长度为2</ol>
+</ul>
+
+
+<div class="container">
+    <span>名称</span>
+    <input id="inp" type="text">
+    <button id="btn" onclick="btnC()">验证</button>
+</div>
+
+
+<script>
+
+    function btnC() {
+        var inp_v = document.querySelector('#inp').value;
+        console.log(inp_v.length);
+
+
+    }
+
+
+</script>
+</body>
+</html>
